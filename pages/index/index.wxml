@@ -1,0 +1,56 @@
+<view class="page">
+  <view class="bg-gradient"></view>
+  <view class="bg-glow"></view>
+  <view class="bg-cloud cloud-a"></view>
+  <view class="bg-cloud cloud-b"></view>
+  <view class="snow-layer">
+    <view
+      wx:for="{{snowflakes}}"
+      wx:key="id"
+      class="snowflake"
+      style="left: {{item.left}}; width: {{item.size}}; height: {{item.size}}; opacity: {{item.opacity}}; animation-duration: {{item.duration}}; animation-delay: {{item.delay}};"
+    ></view>
+  </view>
+
+  <view class="hud">
+    <view class="hud-item">得分 {{score}}</view>
+    <view class="hud-item">最高 {{bestScore}}</view>
+    <view class="hud-item">倍率 x{{multiplier}}</view>
+  </view>
+  <button class="music-btn" bindtap="toggleBgm">{{bgmEnabled ? '音乐开' : '音乐关'}}</button>
+
+  <view class="board-wrap">
+    <view class="board">
+      <game-grid renderRows="{{renderRows}}" boardOffsetPercent="{{boardOffsetPercent}}" />
+      <penguin-sprite penguinStyle="{{penguinStyle}}" penguinClass="{{penguinClass}}" />
+      <view wx:if="{{scoreFloat}}" class="score-float">{{scoreFloat.text}}</view>
+    </view>
+  </view>
+
+  <view class="controls">
+    <button class="ctrl-btn" disabled="{{controlsDisabled}}" bindtap="handleMoveLeft">&lt;-</button>
+    <button class="ctrl-btn" disabled="{{controlsDisabled}}" bindtap="handleMoveRight">-&gt;</button>
+  </view>
+
+  <view wx:if="{{gameState === 'ready'}}" class="overlay">
+    <view class="modal start-modal">
+      <view class="start-star">✦</view>
+      <view class="start-star star-right">✧</view>
+      <view class="title">曲径</view>
+      <view class="subtitle">Q萌小企鹅的雪路冒险</view>
+      <view class="desc">前方有路会自动前进，手动横移会重置倍率</view>
+      <view class="best">当前最高分 {{bestScore}}</view>
+      <button class="main-btn" bindtap="startGame">开始游戏</button>
+    </view>
+  </view>
+
+  <view wx:if="{{gameState === 'gameover'}}" class="overlay">
+    <view class="modal">
+      <view class="title">游戏结束</view>
+      <view class="score-line">本局得分：{{finalScore}}</view>
+      <view class="score-line">最高分：{{bestScore}}</view>
+      <button class="main-btn" bindtap="restartGame">再来一局</button>
+      <button class="share-btn" open-type="share">分享战绩</button>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,3 @@
+<view class="penguin-sprite" style="{{penguinStyle}}">
+  <view class="penguin {{penguinClass}}">🐧</view>
+</view>

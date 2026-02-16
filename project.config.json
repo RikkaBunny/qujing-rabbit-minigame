@@ -1,9 +1,25 @@
 {
-  "compileType": "game",
-  "libVersion": "2.19.4",
-  "projectname": "qujing-rabbit-minigame",
-  "minigameRoot": "minigame/",
-  "miniprogramRoot": "minigame/",
-  "condition": {},
-  "editorVersion": "6.8.6"
+  "setting": {
+    "es6": true,
+    "postcss": true,
+    "minified": true,
+    "uglifyFileName": false,
+    "enhance": true,
+    "packNpmRelationList": [],
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "useCompilerPlugins": false,
+    "minifyWXML": true
+  },
+  "compileType": "miniprogram",
+  "simulatorPluginLibVersion": {},
+  "packOptions": {
+    "ignore": [],
+    "include": []
+  },
+  "appid": "wx2b044ea0818c72d0",
+  "editorSetting": {}
 }

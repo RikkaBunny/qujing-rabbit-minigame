@@ -1,0 +1,7 @@
+<view class="rows-layer" style="transform: translateY({{boardOffsetPercent}}%);">
+  <view wx:for="{{renderRows}}" wx:key="id" class="board-row">
+    <view wx:for="{{item.cells}}" wx:key="id" class="cell {{item.hasRoad ? 'road' : ''}} {{item.toneClass}}">
+      <view wx:if="{{item.hasRoad}}" class="cell-pattern {{item.patternClass}}"></view>
+    </view>
+  </view>
+</view>

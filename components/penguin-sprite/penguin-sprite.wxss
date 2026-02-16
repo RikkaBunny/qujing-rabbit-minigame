@@ -1,0 +1,122 @@
+.penguin-sprite {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translate3d(-50%, -50%, 0);
+  width: 72rpx;
+  height: 72rpx;
+  z-index: 4;
+  will-change: left, top;
+}
+
+.penguin {
+  --face-scale: 1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48rpx;
+  filter: drop-shadow(0 3rpx 6rpx rgba(33, 41, 50, 0.22));
+  transform: scaleX(var(--face-scale));
+}
+
+.penguin.face-left {
+  --face-scale: -1;
+}
+
+.penguin.face-right {
+  --face-scale: 1;
+}
+
+.penguin.motion-idle {
+  animation: penguin-idle 0.45s ease-in-out infinite alternate;
+}
+
+.penguin.motion-forward {
+  animation: penguin-forward 0.22s ease-out;
+}
+
+.penguin.motion-left {
+  animation: penguin-left 0.22s ease-out;
+}
+
+.penguin.motion-right {
+  animation: penguin-right 0.22s ease-out;
+}
+
+.penguin.motion-blocked {
+  animation: penguin-blocked 0.16s ease-out;
+}
+
+.penguin.motion-fall {
+  animation: penguin-fall 0.45s ease-in forwards;
+}
+
+@keyframes penguin-idle {
+  from {
+    transform: scaleX(var(--face-scale)) translateY(1rpx);
+  }
+  to {
+    transform: scaleX(var(--face-scale)) translateY(-3rpx);
+  }
+}
+
+@keyframes penguin-forward {
+  0% {
+    transform: scaleX(var(--face-scale)) translateY(4rpx);
+  }
+  60% {
+    transform: scaleX(var(--face-scale)) translateY(-12rpx) scale(1.05);
+  }
+  100% {
+    transform: scaleX(var(--face-scale)) translateY(0);
+  }
+}
+
+@keyframes penguin-left {
+  0% {
+    transform: scaleX(var(--face-scale)) translateX(6rpx);
+  }
+  70% {
+    transform: scaleX(var(--face-scale)) translateX(-9rpx) rotate(-6deg);
+  }
+  100% {
+    transform: scaleX(var(--face-scale)) translateX(0);
+  }
+}
+
+@keyframes penguin-right {
+  0% {
+    transform: scaleX(var(--face-scale)) translateX(-6rpx);
+  }
+  70% {
+    transform: scaleX(var(--face-scale)) translateX(9rpx) rotate(6deg);
+  }
+  100% {
+    transform: scaleX(var(--face-scale)) translateX(0);
+  }
+}
+
+@keyframes penguin-blocked {
+  0% {
+    transform: scaleX(var(--face-scale)) translateY(0) scale(1);
+  }
+  35% {
+    transform: scaleX(var(--face-scale)) translateY(-6rpx) scale(1.02, 0.98);
+  }
+  100% {
+    transform: scaleX(var(--face-scale)) translateY(0) scale(1);
+  }
+}
+
+@keyframes penguin-fall {
+  0% {
+    transform: scaleX(var(--face-scale)) translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scaleX(var(--face-scale)) translateY(22rpx) rotate(18deg);
+    opacity: 0.7;
+  }
+}
