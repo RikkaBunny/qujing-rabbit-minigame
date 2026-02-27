@@ -38,6 +38,11 @@ qujing-rabbit-minigame-v1/
 3. 选择 `qujing-rabbit-minigame-v1` 文件夹
 4. **重要**：确保选择项目类型为「小游戏」
 
+> ⚠️ **如果工具误识别为小程序**：  
+> - 打开 `project.config.json`，确认 `compileType` 值为 `"game"`（而非 `"miniprogram"`）  
+> - 确保 `minigame/` 目录下存在 `app.json` 和 `game.json` 配置文件  
+> - 如仍报错，删除后重新导入项目
+
 ### 3. 运行预览
 
 - 点击「编译」按钮或使用快捷键 `Ctrl+B`

@@ -1,9 +1,7 @@
 {
   "compileType": "game",
   "libVersion": "2.19.4",
-  "miniprogramRoot": "minigame/",
   "projectname": "qujing-rabbit-minigame",
   "condition": {},
-  "srcMiniprogramRoot": "minigame/",
   "editorVersion": "6.8.6"
 }

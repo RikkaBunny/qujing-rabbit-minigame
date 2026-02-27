@@ -1,5 +1,32 @@
 # 曲径小兔版 - 变更日志
 
+## v2.0.1 (2026-02-27)
+
+### 🔧 微信小游戏编译兼容热修复
+
+#### 修复问题
+- **app.json 缺失错误**：新增 `minigame/app.json` 和 `minigame/game.json` 配置文件
+- **小程序路径错误**：移除 `project.config.json` 中的 `miniprogramRoot` 字段
+
+#### API 兼容性修复
+
+| 问题 | 修复方案 |
+|------|---------|
+| `window.AudioContext` | 微信环境使用 `wx.createInnerAudioContext` |
+| `alert()` | 微信环境使用 `wx.showModal`，非微信环境移除 |
+| `canvas.addEventListener` | 微信环境使用 `wx.onTouchStart` |
+| `requestAnimationFrame` | 添加 `setTimeout` 回退 |
+| 音效播放 | 微信环境使用 `wx.vibrateShort` 降级 |
+
+#### 新增文件
+- `minigame/app.json` - 微信小游戏全局配置
+- `minigame/game.json` - 微信小游戏游戏配置
+
+#### README 更新
+- 新增「如果工具误识别为小程序」的修复说明
+
+---
+
 ## v2.0.0 (2026-02-27)
 
 ### ✨ 新增功能

@@ -3,12 +3,23 @@
  * 微信小游戏骨架：初始化 Canvas、加载资源、启动游戏
  * 
  * v2 新增：
- * - 音效系统（WebAudio beep降级方案）
+ * - 音效系统（WebAudio beep降级方案 + 微信小游戏兼容）
  * - 雪花粒子特效
  * - 微信分享能力
  * - 兔子动画增强
  * - 结算面板增强
+ * 
+ * 微信小游戏兼容：
+ * - requestAnimationFrame 回退 setTimeout
+ * - 触摸事件使用 wx.onTouchStart
+ * - 音效使用 wx.createInnerAudioContext / wx.vibrateShort
+ * - 移除 window / alert 等浏览器 API
  */
+
+// 游戏循环兼容性：确保 requestAnimationFrame 不可用时有 setTimeout 回退
+const gameLoopFrame = typeof requestAnimationFrame !== 'undefined' 
+  ? (cb) => requestAnimationFrame(cb)
+  : (cb) => setTimeout(cb, 1000 / 60);
 
 // 游戏全局配置
 const GAME_CONFIG = {
@@ -38,12 +49,27 @@ class AudioManager {
   }
   
   init() {
-    try {
-      // 尝试创建 WebAudio Context
-      this.ctx = new (window.AudioContext || window.webkitAudioContext)();
-    } catch (e) {
-      console.warn('WebAudio not supported, sound disabled');
-      this.enabled = false;
+    // 微信小游戏环境检测
+    const isWeChatMinigame = typeof wx !== 'undefined' && wx.createCanvas;
+    
+    if (isWeChatMinigame) {
+      // 微信小游戏：使用 wx.createInnerAudioContext
+      try {
+        this.innerAudioContext = wx.createInnerAudioContext();
+        this.innerAudioContext.volume = 0.3;
+        this.enabled = true;
+      } catch (e) {
+        console.warn('wx.createInnerAudioContext failed, sound disabled');
+        this.enabled = false;
+      }
+    } else {
+      // 浏览器环境：尝试创建 WebAudio Context
+      try {
+        this.ctx = new (window.AudioContext || window.webkitAudioContext)();
+      } catch (e) {
+        console.warn('WebAudio not supported, sound disabled');
+        this.enabled = false;
+      }
     }
   }
   
@@ -54,7 +80,25 @@ class AudioManager {
    * @param {string} type - 波形类型 (sine, square, sawtooth, triangle)
    */
   playBeep(frequency = 440, duration = 100, type = 'sine') {
-    if (!this.enabled || !this.ctx) return;
+    if (!this.enabled) return;
+    
+    // 微信小游戏环境
+    if (this.innerAudioContext) {
+      try {
+        // 使用微信音频上下文播放简单提示音
+        // 注意：微信 InnerAudioContext 不支持直接生成波形，使用占位
+        // 实际项目中可使用 wx.vibrateShort 或预置音频文件
+        if (wx.vibrateShort) {
+          wx.vibrateShort({ type: 'light' });
+        }
+      } catch (e) {
+        // 忽略播放错误
+      }
+      return;
+    }
+    
+    // 浏览器环境：WebAudio
+    if (!this.ctx) return;
     
     // 恢复 AudioContext（浏览器自动播放策略）
     if (this.ctx.state === 'suspended') {
@@ -222,44 +266,73 @@ function gameInit() {
  * 注册触摸事件（左右按钮 + 分享按钮区域）
  */
 function registerTouchEvents() {
-  // 左按钮区域
-  canvas.addEventListener('touchstart', (e) => {
-    const touch = e.touches[0];
-    const x = touch.clientX;
-    const y = touch.clientY;
-    
-    // 左下角按钮区域
-    if (x < 100 && y > GAME_CONFIG.height - 120) {
-      game.onLeftButtonClick();
-    }
-    // 右下角按钮区域
-    else if (x > GAME_CONFIG.width - 100 && y > GAME_CONFIG.height - 120) {
-      game.onRightButtonClick();
-    }
-    // v2: 分享按钮区域（游戏结束页面）
-    else if (game.state === 'gameover' && x > 80 && x < GAME_CONFIG.width - 80 && y > 340 && y < 380) {
-      game.onShareButtonClick();
-    }
-  });
+  // 检测微信小游戏环境
+  const isWeChatMinigame = typeof wx !== 'undefined' && wx.onTouchStart;
   
-  // 兼容 PC 鼠标点击
-  canvas.addEventListener('mousedown', (e) => {
-    const x = e.offsetX;
-    const y = e.offsetY;
+  if (isWeChatMinigame) {
+    // 微信小游戏：使用 wx.onTouchStart
+    wx.onTouchStart((e) => {
+      const touch = e.touches[0];
+      if (!touch) return;
+      
+      const x = touch.clientX;
+      const y = touch.clientY;
+      
+      // 左下角按钮区域
+      if (x < 100 && y > GAME_CONFIG.height - 120) {
+        game.onLeftButtonClick();
+      }
+      // 右下角按钮区域
+      else if (x > GAME_CONFIG.width - 100 && y > GAME_CONFIG.height - 120) {
+        game.onRightButtonClick();
+      }
+      // v2: 分享按钮区域（游戏结束页面）
+      else if (game && game.state === 'gameover' && x > 80 && x < GAME_CONFIG.width - 80 && y > 340 && y < 380) {
+        game.onShareButtonClick();
+      }
+    });
+  } else {
+    // 浏览器环境：使用 addEventListener
+    canvas.addEventListener('touchstart', (e) => {
+      const touch = e.touches[0];
+      if (!touch) return;
+      
+      const x = touch.clientX;
+      const y = touch.clientY;
+      
+      // 左下角按钮区域
+      if (x < 100 && y > GAME_CONFIG.height - 120) {
+        game.onLeftButtonClick();
+      }
+      // 右下角按钮区域
+      else if (x > GAME_CONFIG.width - 100 && y > GAME_CONFIG.height - 120) {
+        game.onRightButtonClick();
+      }
+      // v2: 分享按钮区域（游戏结束页面）
+      else if (game && game.state === 'gameover' && x > 80 && x < GAME_CONFIG.width - 80 && y > 340 && y < 380) {
+        game.onShareButtonClick();
+      }
+    });
     
-    // 左下角按钮区域
-    if (x < 100 && y > GAME_CONFIG.height - 120) {
-      game.onLeftButtonClick();
-    }
-    // 右下角按钮区域
-    else if (x > GAME_CONFIG.width - 100 && y > GAME_CONFIG.height - 120) {
-      game.onRightButtonClick();
-    }
-    // v2: 分享按钮区域
-    else if (game.state === 'gameover' && x > 80 && x < GAME_CONFIG.width - 80 && y > 340 && y < 380) {
-      game.onShareButtonClick();
-    }
-  });
+    // 兼容 PC 鼠标点击
+    canvas.addEventListener('mousedown', (e) => {
+      const x = e.offsetX;
+      const y = e.offsetY;
+      
+      // 左下角按钮区域
+      if (x < 100 && y > GAME_CONFIG.height - 120) {
+        game.onLeftButtonClick();
+      }
+      // 右下角按钮区域
+      else if (x > GAME_CONFIG.width - 100 && y > GAME_CONFIG.height - 120) {
+        game.onRightButtonClick();
+      }
+      // v2: 分享按钮区域
+      else if (game && game.state === 'gameover' && x > 80 && x < GAME_CONFIG.width - 80 && y > 340 && y < 380) {
+        game.onShareButtonClick();
+      }
+    });
+  }
 }
 
 /**
@@ -273,10 +346,16 @@ function wxShareAppMessage(title, query) {
       query: query || '',
       imageUrl: '' // 可选：自定义分享图片
     });
+  } else if (typeof wx !== 'undefined' && wx.showModal) {
+    // 微信环境但无分享API，显示模态框
+    wx.showModal({
+      title: '分享功能',
+      content: '分享功能仅在微信中可用\n当前得分: ' + (game ? game.score : 0),
+      showCancel: false
+    });
   } else {
     // 非微信环境降级提示
     console.log('📤 分享功能: ' + (title || '曲径小兔 - 森林跑酷'));
-    alert('分享功能仅在微信中可用\n当前得分: ' + (game ? game.score : 0));
   }
 }
 
@@ -381,7 +460,8 @@ class Game {
     this.update();
     this.render();
     
-    requestAnimationFrame(() => this.gameLoop());
+    // 使用兼容的游戏循环帧函数
+    gameLoopFrame(() => this.gameLoop());
   }
   
   /**
