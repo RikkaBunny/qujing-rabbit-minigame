@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="375" height="667" viewBox="0 0 375 667">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#87CEEB"/>
+      <stop offset="50%" style="stop-color:#90EE90"/>
+      <stop offset="100%" style="stop-color:#228B22"/>
+    </linearGradient>
+  </defs>
+  <!-- 森林背景 -->
+  <rect width="375" height="667" fill="url(#bg)"/>
+  
+  <!-- 道路 -->
+  <g transform="translate(0, 80)">
+    <!-- 第1行 -->
+    <rect x="120" y="0" width="40" height="40" fill="#8B4513" stroke="#32CD32" stroke-width="2"/>
+    <rect x="160" y="0" width="40" height="40" fill="#8B4513" stroke="#32CD32" stroke-width="2"/>
+    <rect x="200" y="0" width="40" height="40" fill="#8B4513" stroke="#32CD32" stroke-width="2"/>
+    <rect x="240" y="0" width="40" height="40" fill="#8B4513" stroke="#32CD32" stroke-width="2"/>
+    <!-- 第2行 -->
+    <rect x="120" y="40" width="40" height="40" fill="#8B4513" stroke="#32CD32" stroke-width="2"/>
+    <rect x="160" y="40" width="40" height="40" fill="#8B4513" stroke="#32CD32" stroke-width="2"/>
+    <rect x="200" y="40" width="40" height="40" fill="#8B4513" stroke="#32CD32" stroke-width="2"/>
+    <rect x="240" y="40" width="40" height="40" fill="#8B4513" stroke="#32CD32" stroke-width="2"/>
+    <!-- 第3行 -->
+    <rect x="120" y="80" width="40" height="40" fill="#8B4513" stroke="#32CD32" stroke-width="2"/>
+    <rect x="160" y="80" width="40" height="40" fill="#8B4513" stroke="#32CD32" stroke-width="2"/>
+    <rect x="200" y="80" width="40" height="40" fill="#8B4513" stroke="#32CD32" stroke-width="2"/>
+    <rect x="240" y="80" width="40" height="40" fill="#8B4513" stroke="#32CD32" stroke-width="2"/>
+    <!-- 第4行 -->
+    <rect x="120" y="120" width="40" height="40" fill="#8B4513" stroke="#32CD32" stroke-width="2"/>
+    <rect x="160" y="120" width="40" height="40" fill="#8B4513" stroke="#32CD32" stroke-width="2"/>
+    <rect x="200" y="120" width="40" height="40" fill="#8B4513" stroke="#32CD32" stroke-width="2"/>
+    <rect x="240" y="120" width="40" height="40" fill="#8B4513" stroke="#32CD32" stroke-width="2"/>
+    <!-- 第5行 -->
+    <rect x="120" y="160" width="40" height="40" fill="#8B4513" stroke="#32CD32" stroke-width="2"/>
+    <rect x="160" y="160" width="40" height="40" fill="#8B4513" stroke="#32CD32" stroke-width="2"/>
+    <rect x="200" y="160" width="40" height="40" fill="#8B4513" stroke="#32CD32" stroke-width="2"/>
+    <rect x="240" y="160" width="40" height="40" fill="#8B4513" stroke="#32CD32" stroke-width="2"/>
+    <!-- 第6行 -->
+    <rect x="120" y="200" width="40" height="40" fill="#8B4513" stroke="#32CD32" stroke-width="2"/>
+    <rect x="160" y="200" width="40" height="40" fill="#8B4513" stroke="#32CD32" stroke-width="2"/>
+    <rect x="200" y="200" width="40" height="40" fill="#8B4513" stroke="#32CD32" stroke-width="2"/>
+    <rect x="240" y="200" width="40" height="40" fill="#8B4513" stroke="#32CD32" stroke-width="2"/>
+    <!-- 第7行 -->
+    <rect x="160" y="240" width="40" height="40" fill="#8B4513" stroke="#32CD32" stroke-width="2"/>
+    <rect x="200" y="240" width="40" height="40" fill="#8B4513" stroke="#32CD32" stroke-width="2"/>
+    <rect x="240" y="240" width="40" height="40" fill="#8B4513" stroke="#32CD32" stroke-width="2"/>
+    <!-- 第8行 -->
+    <rect x="160" y="280" width="40" height="40" fill="#8B4513" stroke="#32CD32" stroke-width="2"/>
+    <rect x="200" y="280" width="40" height="40" fill="#8B4513" stroke="#32CD32" stroke-width="2"/>
+    <rect x="240" y="280" width="40" height="40" fill="#8B4513" stroke="#32CD32" stroke-width="2"/>
+    <!-- 第9行 -->
+    <rect x="160" y="320" width="40" height="40" fill="#8B4513" stroke="#32CD32" stroke-width="2"/>
+    <rect x="200" y="320" width="40" height="40" fill="#8B4513" stroke="#32CD32" stroke-width="2"/>
+    <rect x="240" y="320" width="40" height="40" fill="#8B4513" stroke="#32CD32" stroke-width="2"/>
+    <!-- 第10行 -->
+    <rect x="160" y="360" width="40" height="40" fill="#8B4513" stroke="#32CD32" stroke-width="2"/>
+    <rect x="200" y="360" width="40" height="40" fill="#8B4513" stroke="#32CD32" stroke-width="2"/>
+    <rect x="240" y="360" width="40" height="40" fill="#8B4513" stroke="#32CD32" stroke-width="2"/>
+    <!-- 第11行 -->
+    <rect x="160" y="400" width="40" height="40" fill="#8B4513" stroke="#32CD32" stroke-width="2"/>
+    <rect x="200" y="400" width="40" height="40" fill="#8B4513" stroke="#32CD32" stroke-width="2"/>
+    <rect x="240" y="400" width="40" height="40" fill="#8B4513" stroke="#32CD32" stroke-width="2"/>
+    <!-- 第12行 -->
+    <rect x="160" y="440" width="40" height="40" fill="#8B4513" stroke="#32CD32" stroke-width="2"/>
+    <rect x="200" y="440" width="40" height="40" fill="#8B4513" stroke="#32CD32" stroke-width="2"/>
+    <rect x="240" y="440" width="40" height="40" fill="#8B4513" stroke="#32CD32" stroke-width="2"/>
+    <!-- 第13行 -->
+    <rect x="160" y="480" width="40" height="40" fill="#8B4513" stroke="#32CD32" stroke-width="2"/>
+    <rect x="200" y="480" width="40" height="40" fill="#8B4513" stroke="#32CD32" stroke-width="2"/>
+    <rect x="240" y="480" width="40" height="40" fill="#8B4513" stroke="#32CD32" stroke-width="2"/>
+  </g>
+  
+  <!-- 小兔子 -->
+  <g transform="translate(220, 437)">
+    <ellipse cx="0" cy="0" rx="15" ry="12" fill="white"/>
+    <circle cx="0" cy="-5" r="10" fill="white"/>
+    <ellipse cx="-6" cy="-18" rx="3" ry="8" fill="white"/>
+    <ellipse cx="6" cy="-18" rx="3" ry="8" fill="white"/>
+    <ellipse cx="-6" cy="-18" rx="2" ry="5" fill="#FFB6C1"/>
+    <ellipse cx="6" cy="-18" rx="2" ry="5" fill="#FFB6C1"/>
+    <circle cx="-4" cy="-6" r="1.5" fill="#FF0000"/>
+    <circle cx="4" cy="-6" r="1.5" fill="#FF0000"/>
+    <circle cx="0" cy="-2" r="1.5" fill="#FF69B4"/>
+  </g>
+  
+  <!-- 分数UI -->
+  <rect x="10" y="10" width="150" height="60" fill="rgba(0,0,0,0.5)"/>
+  <text x="20" y="35" font-family="Arial" font-size="20" fill="white">得分: 15</text>
+  <text x="20" y="55" font-family="Arial" font-size="14" fill="white">最高: 100</text>
+  
+  <!-- 按钮 -->
+  <circle cx="40" cy="587" r="25" fill="rgba(255,255,255,0.5)"/>
+  <circle cx="335" cy="587" r="25" fill="rgba(255,255,255,0.5)"/>
+  <text x="40" y="595" font-family="Arial" font-size="24" font-weight="bold" fill="black" text-anchor="middle">←</text>
+  <text x="335" y="595" font-family="Arial" font-size="24" font-weight="bold" fill="black" text-anchor="middle">→</text>
+</svg>

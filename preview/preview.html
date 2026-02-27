@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>曲径小兔版 - 预览</title>
+  <style>
+    body { margin: 0; padding: 20px; background: #333; font-family: Arial, sans-serif; }
+    h2 { color: #fff; text-align: center; }
+    .preview-container { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+    canvas { border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.5); }
+  </style>
+</head>
+<body>
+  <h2>🎮 曲径小兔版 - 预览图</h2>
+  <div class="preview-container">
+    <canvas id="previewStart" width="375" height="667"></canvas>
+    <canvas id="previewGame" width="375" height="667"></canvas>
+  </div>
+
+  <script>
+    // 绘制开始画面
+    function drawStartScreen(canvas) {
+      const ctx = canvas.getContext('2d');
+      const w = canvas.width;
+      const h = canvas.height;
+      
+      // 森林背景渐变
+      const gradient = ctx.createLinearGradient(0, 0, 0, h);
+      gradient.addColorStop(0, '#87CEEB');
+      gradient.addColorStop(0.5, '#90EE90');
+      gradient.addColorStop(1, '#228B22');
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, w, h);
+      
+      // 标题
+      ctx.fillStyle = '#FFFFFF';
+      ctx.font = 'bold 48px Arial';
+      ctx.textAlign = 'center';
+      ctx.fillText('曲径', w/2, 200);
+      ctx.font = '20px Arial';
+      ctx.fillText('小兔版', w/2, 240);
+      
+      // 最高分
+      ctx.font = '18px Arial';
+      ctx.fillText('最高分: 0', w/2, 300);
+      
+      // 提示
+      ctx.font = '16px Arial';
+      ctx.fillText('点击下方按钮开始游戏', w/2, 400);
+      
+      // 绘制小兔子
+      drawRabbit(ctx, w/2, 320, 50);
+      
+      // 绘制按钮
+      drawButtons(ctx, w, h);
+    }
+    
+    // 绘制游戏画面
+    function drawGameScreen(canvas) {
+      const ctx = canvas.getContext('2d');
+      const w = canvas.width;
+      const h = canvas.height;
+      
+      // 森林背景
+      const gradient = ctx.createLinearGradient(0, 0, 0, h);
+      gradient.addColorStop(0, '#87CEEB');
+      gradient.addColorStop(0.5, '#90EE90');
+      gradient.addColorStop(1, '#228B22');
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, w, h);
+      
+      // 道路
+      const cellSize = 40;
+      const roadOffset = 20;
+      
+      // 生成示例道路
+      for (let row = 0; row < 15; row++) {
+        const y = row * cellSize - roadOffset + 100;
+        const roadCenter = 5 + Math.floor(row % 3) - 1; // 模拟弯曲
+        
+        for (let col = 3; col < 7; col++) {
+          // 棕色泥土
+          ctx.fillStyle = '#8B4513';
+          ctx.fillRect(col * cellSize + 2, y + 2, cellSize - 4, cellSize - 4);
+          
+          // 绿色草边
+          ctx.strokeStyle = '#32CD32';
+          ctx.lineWidth = 2;
+          ctx.strokeRect(col * cellSize + 2, y + 2, cellSize - 4, cellSize - 4);
+        }
+      }
+      
+      // 绘制小兔子
+      drawRabbit(ctx, 5 * cellSize + 20, h - 150, 30);
+      
+      // 分数UI
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+      ctx.fillRect(10, 10, 150, 60);
+      ctx.fillStyle = '#FFFFFF';
+      ctx.font = '20px Arial';
+      ctx.textAlign = 'left';
+      ctx.fillText('得分: 15', 20, 35);
+      ctx.font = '14px Arial';
+      ctx.fillText('最高: 100', 20, 55);
+      
+      // 按钮
+      drawButtons(ctx, w, h);
+    }
+    
+    // 绘制小兔子
+    function drawRabbit(ctx, x, y, size) {
+      // 身体
+      ctx.fillStyle = '#FFFFFF';
+      ctx.beginPath();
+      ctx.ellipse(x, y, size/2, size/2.5, 0, 0, Math.PI * 2);
+      ctx.fill();
+      
+      // 头部
+      ctx.beginPath();
+      ctx.arc(x, y - 5, size/3, 0, Math.PI * 2);
+      ctx.fill();
+      
+      // 耳朵
+      ctx.beginPath();
+      ctx.ellipse(x - 6, y - 20, 4, 12, -0.2, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.beginPath();
+      ctx.ellipse(x + 6, y - 20, 4, 12, 0.2, 0, Math.PI * 2);
+      ctx.fill();
+      
+      // 耳朵内部（粉色）
+      ctx.fillStyle = '#FFB6C1';
+      ctx.beginPath();
+      ctx.ellipse(x - 6, y - 20, 2, 8, -0.2, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.beginPath();
+      ctx.ellipse(x + 6, y - 20, 2, 8, 0.2, 0, Math.PI * 2);
+      ctx.fill();
+      
+      // 眼睛（红色）
+      ctx.fillStyle = '#FF0000';
+      ctx.beginPath();
+      ctx.arc(x - 4, y - 6, 2, 0, Math.PI * 2);
+      ctx.arc(x + 4, y - 6, 2, 0, Math.PI * 2);
+      ctx.fill();
+      
+      // 鼻子
+      ctx.fillStyle = '#FF69B4';
+      ctx.beginPath();
+      ctx.arc(x, y - 2, 2, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    
+    // 绘制按钮
+    function drawButtons(ctx, w, h) {
+      const btnY = h - 80;
+      const btnSize = 50;
+      
+      // 左按钮
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+      ctx.beginPath();
+      ctx.arc(40, btnY, btnSize/2, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = '#000000';
+      ctx.font = 'bold 24px Arial';
+      ctx.textAlign = 'center';
+      ctx.fillText('←', 40, btnY + 8);
+      
+      // 右按钮
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+      ctx.beginPath();
+      ctx.arc(w - 40, btnY, btnSize/2, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillText('→', w - 40, btnY + 8);
+    }
+    
+    // 生成预览图
+    window.onload = function() {
+      drawStartScreen(document.getElementById('previewStart'));
+      drawGameScreen(document.getElementById('previewGame'));
+      
+      // 保存为图片（需要服务器环境，这里仅展示）
+      console.log('预览图已生成');
+    };
+  </script>
+</body>
+</html>
