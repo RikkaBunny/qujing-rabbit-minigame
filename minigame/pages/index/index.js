@@ -1,0 +1,4 @@
+// placeholder page
+Page({
+  data: {}
+});
