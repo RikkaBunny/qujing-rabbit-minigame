@@ -3,7 +3,7 @@
   "libVersion": "2.19.4",
   "projectname": "qujing-rabbit-minigame",
   "minigameRoot": "minigame/",
-  "miniprogramRoot": "",
+  "miniprogramRoot": "minigame/",
   "condition": {},
   "editorVersion": "6.8.6"
 }

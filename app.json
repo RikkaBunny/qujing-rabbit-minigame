@@ -1,0 +1,9 @@
+{
+  "pages": [
+    "pages/index/index"
+  ],
+  "window": {
+    "navigationBarTitleText": "曲径小兔"
+  },
+  "deviceOrientation": "portrait"
+}
