@@ -1,0 +1,60 @@
+<!-- 可爱小兔子 Sprite -->
+<view class="penguin-sprite" style="{{rabbitStyle || penguinStyle}}">
+  <view class="penguin {{rabbitClass || penguinClass}}">
+    <view class="penguin-layer penguin-front">
+      <view class="penguin-body">
+        <view class="penguin-belly"></view>
+        <view class="penguin-eye eye-left"></view>
+        <view class="penguin-eye eye-right"></view>
+        <view class="penguin-cheek cheek-left"></view>
+        <view class="penguin-cheek cheek-right"></view>
+        <!-- 小兔子改成长耳朵 -->
+        <view class="penguin-ear ear-left"></view>
+        <view class="penguin-ear ear-right"></view>
+        <view class="penguin-nose"></view>
+        <view class="penguin-shine"></view>
+      </view>
+      <view class="penguin-wing wing-left"></view>
+      <view class="penguin-wing wing-right"></view>
+      <view class="penguin-foot foot-left"></view>
+      <view class="penguin-foot foot-right"></view>
+    </view>
+
+    <view class="penguin-layer penguin-back">
+      <view class="penguin-body penguin-back-body">
+        <view class="penguin-back-mark"></view>
+        <view class="penguin-shine back-shine"></view>
+      </view>
+      <view class="penguin-wing wing-left back-wing-left"></view>
+      <view class="penguin-wing wing-right back-wing-right"></view>
+      <view class="penguin-foot foot-left"></view>
+      <view class="penguin-foot foot-right"></view>
+    </view>
+
+    <view class="penguin-layer penguin-side side-right">
+      <view class="penguin-side-body">
+        <view class="penguin-side-belly"></view>
+        <view class="penguin-side-eye"></view>
+        <view class="penguin-side-cheek"></view>
+        <view class="penguin-side-beak"></view>
+        <view class="penguin-side-ear"></view>
+      </view>
+      <view class="penguin-side-wing"></view>
+      <view class="penguin-side-foot side-foot-front"></view>
+      <view class="penguin-side-foot side-foot-back"></view>
+    </view>
+
+    <view class="penguin-layer penguin-side side-left">
+      <view class="penguin-side-body">
+        <view class="penguin-side-belly"></view>
+        <view class="penguin-side-eye"></view>
+        <view class="penguin-side-cheek"></view>
+        <view class="penguin-side-beak"></view>
+        <view class="penguin-side-ear"></view>
+      </view>
+      <view class="penguin-side-wing"></view>
+      <view class="penguin-side-foot side-foot-front"></view>
+      <view class="penguin-side-foot side-foot-back"></view>
+    </view>
+  </view>
+</view>

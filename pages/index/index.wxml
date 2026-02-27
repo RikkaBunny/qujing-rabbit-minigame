@@ -1,6 +1,9 @@
 <view class="page">
   <view class="bg-gradient"></view>
   <view class="bg-glow"></view>
+  <view class="bg-stripes"></view>
+  <view class="bg-diag diag-a"></view>
+  <view class="bg-diag diag-b"></view>
   <view class="bg-cloud cloud-a"></view>
   <view class="bg-cloud cloud-b"></view>
   <view class="snow-layer">
@@ -12,36 +15,130 @@
     ></view>
   </view>
 
-  <view class="hud">
-    <view class="hud-item">得分 {{score}}</view>
-    <view class="hud-item">最高 {{bestScore}}</view>
-    <view class="hud-item">倍率 x{{multiplier}}</view>
+  <view wx:if="{{gameState !== 'menu'}}" class="top-bar">
+    <button class="top-icon-btn" bindtap="togglePause">
+      <view wx:if="{{isPaused}}" class="top-play-icon"></view>
+      <view wx:else class="top-pause-icon-wrap">
+        <view class="top-pause-bar"></view>
+        <view class="top-pause-bar"></view>
+      </view>
+    </button>
+    <view class="top-score flame-tier-{{uiFlameTier}}">
+      <view class="ui-ghost-aura flame-tier-{{uiFlameTier}}"></view>
+      <text class="top-score-label">SCORE</text>
+      <text class="top-score-value">{{score}}</text>
+    </view>
+    <button class="top-icon-btn" bindtap="toggleBgm">
+      <view class="top-music-icon-wrap">
+        <text class="top-icon top-icon-music">♪</text>
+        <text wx:if="{{!bgmEnabled}}" class="top-icon-slash">/</text>
+      </view>
+    </button>
   </view>
-  <button class="music-btn" bindtap="toggleBgm">{{bgmEnabled ? '音乐开' : '音乐关'}}</button>
+
+  <view wx:if="{{encourageTip && gameState === 'playing'}}" class="encourage-tip">
+    <view class="encourage-tip-tag">{{encourageTip.tag}}</view>
+    <view class="encourage-tip-text">{{encourageTip.text}}</view>
+    <view class="encourage-tip-milestone">里程碑 {{encourageTip.score}} 分</view>
+  </view>
 
   <view class="board-wrap">
     <view class="board">
-      <game-grid renderRows="{{renderRows}}" boardOffsetPercent="{{boardOffsetPercent}}" />
-      <penguin-sprite penguinStyle="{{penguinStyle}}" penguinClass="{{penguinClass}}" />
+      <game-grid
+        renderRows="{{renderRows}}"
+        boardOffsetPercent="{{boardOffsetPercent}}"
+        gridRows="{{gridRows}}"
+        gridCols="{{gridCols}}"
+      />
+      <rabbit-sprite rabbitStyle="{{rabbitStyle}}" rabbitClass="{{rabbitClass}}" penguinStyle="{{rabbitStyle}}" penguinClass="{{rabbitClass}}" />
       <view wx:if="{{scoreFloat}}" class="score-float">{{scoreFloat.text}}</view>
+      <view wx:if="{{bonusFloat}}" class="bonus-float">{{bonusFloat.text}}</view>
     </view>
   </view>
 
-  <view class="controls">
-    <button class="ctrl-btn" disabled="{{controlsDisabled}}" bindtap="handleMoveLeft">&lt;-</button>
-    <button class="ctrl-btn" disabled="{{controlsDisabled}}" bindtap="handleMoveRight">-&gt;</button>
+  <view wx:if="{{!controlsDisabled}}" class="touch-zones">
+    <view class="touch-zone touch-zone-left" bindtap="handleMoveLeft"></view>
+    <view class="touch-zone touch-zone-right" bindtap="handleMoveRight"></view>
   </view>
 
-  <view wx:if="{{gameState === 'ready'}}" class="overlay">
-    <view class="modal start-modal">
-      <view class="start-star">✦</view>
-      <view class="start-star star-right">✧</view>
+  <view wx:if="{{gameState !== 'menu'}}" class="controls">
+    <button class="ctrl-btn flame-tier-{{uiFlameTier}}" disabled="{{controlsDisabled}}" bindtap="handleMoveLeft">
+      <view class="ctrl-runner ctrl-runner-left">
+        <view class="ctrl-runner-trails">
+          <view class="trail trail-1"></view>
+          <view class="trail trail-2"></view>
+        </view>
+        <view class="ctrl-mini-penguin">
+          <view class="ctrl-mini-body"></view>
+          <view class="ctrl-mini-belly"></view>
+          <view class="ctrl-mini-eye"></view>
+          <view class="ctrl-mini-beak"></view>
+          <view class="ctrl-mini-foot"></view>
+        </view>
+      </view>
+    </button>
+    <button class="ctrl-btn flame-tier-{{uiFlameTier}}" disabled="{{controlsDisabled}}" bindtap="handleMoveRight">
+      <view class="ctrl-runner ctrl-runner-right">
+        <view class="ctrl-runner-trails">
+          <view class="trail trail-1"></view>
+          <view class="trail trail-2"></view>
+        </view>
+        <view class="ctrl-mini-penguin">
+          <view class="ctrl-mini-body"></view>
+          <view class="ctrl-mini-belly"></view>
+          <view class="ctrl-mini-eye"></view>
+          <view class="ctrl-mini-beak"></view>
+          <view class="ctrl-mini-foot"></view>
+        </view>
+      </view>
+    </button>
+  </view>
+
+  <view wx:if="{{gameState === 'menu'}}" class="menu-screen">
+    <view class="menu-content">
+      <view class="menu-mascot-wrap">
+        <view class="menu-mascot-shadow"></view>
+        <view class="menu-mascot">
+          <view class="menu-penguin-body"></view>
+          <view class="menu-penguin-belly"></view>
+          <view class="menu-penguin-eye menu-penguin-eye-left"></view>
+          <view class="menu-penguin-eye menu-penguin-eye-right"></view>
+          <view class="menu-penguin-cheek menu-penguin-cheek-left"></view>
+          <view class="menu-penguin-cheek menu-penguin-cheek-right"></view>
+          <view class="menu-penguin-beak"></view>
+          <view class="menu-penguin-wing menu-penguin-wing-left"></view>
+          <view class="menu-penguin-wing menu-penguin-wing-right"></view>
+          <view class="menu-penguin-foot menu-penguin-foot-left"></view>
+          <view class="menu-penguin-foot menu-penguin-foot-right"></view>
+        </view>
+      </view>
       <view class="title">曲径</view>
-      <view class="subtitle">Q萌小企鹅的雪路冒险</view>
-      <view class="desc">前方有路会自动前进，手动横移会重置倍率</view>
+      <view class="subtitle">Q萌小兔子的雪路冒险</view>
       <view class="best">当前最高分 {{bestScore}}</view>
-      <button class="main-btn" bindtap="startGame">开始游戏</button>
+      <button wx:if="{{canResume}}" class="main-btn menu-btn" bindtap="continueGame">继续游戏</button>
+      <button class="main-btn menu-btn" bindtap="startGame">开始游戏</button>
+      <button class="share-btn menu-btn" bindtap="openRanking">游戏排行榜</button>
+      <button class="share-btn menu-btn menu-exit-btn" bindtap="exitGame">退出游戏</button>
     </view>
+  </view>
+
+  <view wx:if="{{showRanking && gameState === 'menu'}}" class="overlay ranking-overlay" bindtap="closeRanking">
+    <view class="modal ranking-modal" catchtap="noop">
+      <view class="title ranking-title">排行榜</view>
+      <view wx:if="{{leaderboard.length === 0}}" class="score-line">暂无记录，开始游戏冲榜吧</view>
+      <view wx:for="{{leaderboard}}" wx:key="index" class="ranking-row">
+        <text class="ranking-rank">#{{index + 1}}</text>
+        <view class="ranking-meta">
+          <text class="ranking-score">{{item.score}} 分</text>
+          <text class="ranking-time">{{item.timeLabel}}</text>
+        </view>
+      </view>
+      <button class="main-btn" bindtap="closeRanking">关闭</button>
+    </view>
+  </view>
+
+  <view wx:if="{{gameState === 'countdown'}}" class="countdown-layer">
+    <view class="countdown-number {{countdownPulse % 2 === 0 ? 'countdown-b' : 'countdown-a'}}">{{countdownValue}}</view>
   </view>
 
   <view wx:if="{{gameState === 'gameover'}}" class="overlay">

@@ -1,6 +1,6 @@
 {
   "usingComponents": {
     "game-grid": "/components/game-grid/game-grid",
-    "penguin-sprite": "/components/penguin-sprite/penguin-sprite"
+    "rabbit-sprite": "/components/rabbit-sprite/rabbit-sprite"
   }
 }

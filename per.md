@@ -1,5 +1,12 @@
 # 《曲径》游戏开发文档
 
+## 0. 项目结构说明（重要）
+
+- **主运行版本**：微信**小游戏**，入口在 `minigame/` 目录。
+  - 用微信开发者工具打开本项目时，请选择/确认 **项目类型为「小游戏」**；`project.config.json` 中 `compileType: "game"`、`miniprogramRoot: "minigame/"`，实际运行的是 `minigame/game.js` → `minigame/main.js`（Canvas 渲染）。
+- **小程序代码**：仓库根目录的 `app.json`、`pages/`、`components/` 为**从小程序转换前的源码**，目前仅作保留参考，不参与小游戏构建。
+- **逻辑同步**：小游戏玩法逻辑在 `minigame/page-logic.js`，由 `pages/index/index.js` 转换而来。若修改**玩法、计分、道路生成、状态机**等逻辑，建议两边同步维护（或先改 `pages/index/index.js` 再复制到 `minigame/page-logic.js`），避免小游戏与历史版本行为不一致。
+
 ## 1. 游戏概述
 
 《曲径》是一款竖屏休闲跑酷类微信小游戏。玩家控制一只可爱的小企鹅，在无限延伸的冰雪道路上前进。道路会随机向左或向右弯曲，玩家需要通过左右操作让企鹅始终保持在道路上。游戏节奏紧张刺激，考验玩家的反应速度和预判能力。

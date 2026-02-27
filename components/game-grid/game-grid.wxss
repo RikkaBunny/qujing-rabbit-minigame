@@ -4,45 +4,85 @@
 }
 
 .board-row {
-  height: calc(100% / 14);
+  height: calc(100% / var(--grid-rows));
   display: flex;
 }
 
 .cell {
   position: relative;
-  width: calc(100% / 9);
+  width: calc(100% / var(--grid-cols));
   height: 100%;
   box-sizing: border-box;
-  border: 1rpx solid rgba(232, 236, 236, 0.42);
+  background: #fdfdfd;
+  border: 1rpx solid rgba(226, 235, 246, 0.72);
+  border-radius: 8rpx;
+  overflow: hidden;
+  isolation: isolate;
 }
 
 .cell.road {
+  --road-symbol-color: #dfe3e8;
+  --road-symbol-edge-color: #eef2f6;
   border-color: rgba(191, 199, 204, 0.58);
   box-shadow: inset 0 0 12rpx rgba(255, 255, 255, 0.22), 0 0 10rpx rgba(252, 245, 232, 0.35);
 }
 
+.cell.road.bonus-cell {
+  border-color: rgba(255, 213, 121, 0.94);
+  box-shadow:
+    inset 0 0 12rpx rgba(255, 247, 210, 0.38),
+    0 0 16rpx rgba(255, 222, 132, 0.62),
+    0 0 26rpx rgba(255, 205, 98, 0.54),
+    0 0 42rpx rgba(255, 188, 72, 0.34);
+}
+
+.cell.road.bonus-cell::after {
+  content: "";
+  position: absolute;
+  inset: -4rpx;
+  border-radius: 10rpx;
+  border: 1.8rpx solid rgba(255, 232, 164, 0.94);
+  box-shadow:
+    0 0 16rpx rgba(255, 219, 126, 0.6),
+    0 0 32rpx rgba(255, 196, 86, 0.46),
+    0 0 54rpx rgba(255, 186, 74, 0.3);
+  pointer-events: none;
+}
+
 .cell.road.road-tone-0 {
   background: #e8ddd2;
+  --road-symbol-color: #e8ddd2;
+  --road-symbol-edge-color: #f2e6dc;
 }
 
 .cell.road.road-tone-1 {
   background: #dce7de;
+  --road-symbol-color: #dce7de;
+  --road-symbol-edge-color: #deeee2;
 }
 
 .cell.road.road-tone-2 {
   background: #ddd9e6;
+  --road-symbol-color: #ddd9e6;
+  --road-symbol-edge-color: #e5def4;
 }
 
 .cell.road.road-tone-3 {
   background: #e9d7d1;
+  --road-symbol-color: #e9d7d1;
+  --road-symbol-edge-color: #f4dfd8;
 }
 
 .cell.road.road-tone-4 {
   background: #d5e1e9;
+  --road-symbol-color: #d5e1e9;
+  --road-symbol-edge-color: #d8ebf4;
 }
 
 .cell.road.road-tone-5 {
   background: #e5decc;
+  --road-symbol-color: #e5decc;
+  --road-symbol-edge-color: #f1e6cb;
 }
 
 .cell-pattern {
@@ -52,14 +92,18 @@
   transform: translate(-50%, -50%);
   width: 52%;
   height: 52%;
-  opacity: 0.5;
-  filter: drop-shadow(0 1rpx 2rpx rgba(255, 255, 255, 0.45));
+  color: var(--road-symbol-color);
+  opacity: 0.9;
+  border: 1.6rpx solid var(--road-symbol-edge-color);
+  box-sizing: border-box;
+  filter: drop-shadow(0 1rpx 2rpx var(--road-symbol-edge-color));
+  box-shadow: 0 0 4rpx var(--road-symbol-edge-color);
 }
 
 .cell-pattern.road-pattern-0 {
   width: 48%;
   height: 40%;
-  background: rgba(136, 151, 161, 0.3);
+  background: currentColor;
   border-radius: 999rpx;
 }
 
@@ -71,7 +115,9 @@
   width: 44%;
   height: 70%;
   border-radius: 50%;
-  background: rgba(136, 151, 161, 0.3);
+  background: currentColor;
+  border: 1.6rpx solid var(--road-symbol-edge-color);
+  box-sizing: border-box;
 }
 
 .cell-pattern.road-pattern-0::before {
@@ -85,7 +131,7 @@
 .cell-pattern.road-pattern-1 {
   width: 46%;
   height: 46%;
-  background: rgba(141, 154, 166, 0.3);
+  background: currentColor;
   transform: translate(-50%, -50%) rotate(45deg) scale(0.9);
   border-radius: 14rpx;
 }
@@ -94,7 +140,7 @@
   width: 56%;
   height: 22%;
   border-radius: 999rpx;
-  background: rgba(130, 146, 158, 0.3);
+  background: currentColor;
 }
 
 .cell-pattern.road-pattern-2::before,
@@ -106,7 +152,9 @@
   height: 140%;
   border-radius: 999rpx;
   transform: translateY(-50%);
-  background: rgba(130, 146, 158, 0.3);
+  background: currentColor;
+  border: 1.4rpx solid var(--road-symbol-edge-color);
+  box-sizing: border-box;
 }
 
 .cell-pattern.road-pattern-2::before {
@@ -121,23 +169,22 @@
   width: 16%;
   height: 16%;
   border-radius: 50%;
-  background: rgba(132, 145, 155, 0.5);
-  box-shadow: 0 -11rpx 0 rgba(132, 145, 155, 0.36), 0 11rpx 0 rgba(132, 145, 155, 0.36),
-    -11rpx 0 0 rgba(132, 145, 155, 0.36), 11rpx 0 0 rgba(132, 145, 155, 0.36);
+  background: currentColor;
+  box-shadow: 0 -11rpx 0 currentColor, 0 11rpx 0 currentColor, -11rpx 0 0 currentColor, 11rpx 0 0 currentColor;
 }
 
 .cell-pattern.road-pattern-4 {
   width: 52%;
   height: 52%;
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.5) 0 14%, rgba(140, 155, 166, 0.3) 35% 100%);
+  background: radial-gradient(circle at 35% 35%, var(--road-symbol-edge-color) 0 15%, currentColor 36% 100%);
 }
 
 .cell-pattern.road-pattern-5 {
   width: 50%;
   height: 12%;
   border-radius: 999rpx;
-  background: rgba(136, 150, 162, 0.3);
+  background: currentColor;
 }
 
 .cell-pattern.road-pattern-5::before,
@@ -149,7 +196,9 @@
   height: 180%;
   border-radius: 999rpx;
   transform: translateY(-50%);
-  background: rgba(136, 150, 162, 0.3);
+  background: currentColor;
+  border: 1.4rpx solid var(--road-symbol-edge-color);
+  box-sizing: border-box;
 }
 
 .cell-pattern.road-pattern-5::before {
@@ -158,4 +207,67 @@
 
 .cell-pattern.road-pattern-5::after {
   right: 8%;
+}
+
+/* Cute animal icons replace geometric symbols */
+.cell-pattern[class*="road-pattern-"] {
+  width: 72% !important;
+  height: 72% !important;
+  transform: translate(-50%, -50%) !important;
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  isolation: isolate;
+}
+
+.cell-pattern::before,
+.cell-pattern::after {
+  content: none !important;
+}
+
+.animal-icon {
+  font-size: 44rpx;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--road-symbol-color);
+  mix-blend-mode: normal;
+  opacity: 0.96;
+  filter: drop-shadow(0 2rpx 3rpx rgba(88, 96, 120, 0.16));
+  text-shadow:
+    0 0 1rpx rgba(255, 255, 255, 0.96),
+    0 0 2rpx rgba(255, 255, 255, 0.85),
+    0 0 6rpx var(--road-symbol-edge-color),
+    0 1rpx 0 rgba(255, 255, 255, 0.34);
+  transform: translateY(1rpx);
+  animation: none;
+}
+
+.animal-icon.icon-self-color {
+  color: #ffd469;
+  mix-blend-mode: normal;
+  opacity: 1;
+  filter: sepia(1) saturate(160%) hue-rotate(354deg) brightness(1.24) contrast(1.16)
+    drop-shadow(0 0 3rpx rgba(255, 228, 146, 0.9))
+    drop-shadow(0 3rpx 6rpx rgba(202, 132, 37, 0.42));
+  text-shadow:
+    0 0 2rpx rgba(255, 248, 218, 0.95),
+    0 0 8rpx rgba(255, 220, 126, 0.9),
+    0 0 14rpx rgba(255, 196, 86, 0.72);
+}
+
+@keyframes icon-float {
+  0% {
+    transform: translateY(2rpx) scale(0.98);
+  }
+  50% {
+    transform: translateY(-4rpx) scale(1.04);
+  }
+  100% {
+    transform: translateY(2rpx) scale(0.98);
+  }
 }
