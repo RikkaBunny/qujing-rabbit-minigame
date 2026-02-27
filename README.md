@@ -177,6 +177,17 @@ v2 集成了微信分享能力：
 - `preview/preview-v2.svg` - v2 新功能预览
 - `preview/preview.html` - 交互式预览（浏览器打开）
 
+## 📸 游戏截图
+
+### 1. 菜单/开始界面
+![菜单界面](screenshots/01-menu.svg)
+
+### 2. 游戏中界面
+![游戏中界面](screenshots/02-playing.svg)
+
+### 3. 结算界面
+![结算界面](screenshots/03-gameover.svg)
+
 ## 🛠️ 技术栈
 
 - **渲染**：HTML5 Canvas (微信小游戏)

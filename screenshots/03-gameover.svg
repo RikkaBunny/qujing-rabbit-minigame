@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 375 667">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#87CEEB"/>
+      <stop offset="50%" style="stop-color:#90EE90"/>
+      <stop offset="100%" style="stop-color:#228B22"/>
+    </linearGradient>
+  </defs>
+  <rect width="375" height="667" fill="url(#bg)"/>
+  <!-- 遮罩 -->
+  <rect width="375" height="667" fill="rgba(0,0,0,0.7)"/>
+  <!-- 结算面板 -->
+  <rect x="30" y="150" width="315" height="280" fill="white" rx="10"/>
+  <text x="187" y="200" fill="#FF0000" font-family="Arial" font-size="28" font-weight="bold" text-anchor="middle">游戏结束</text>
+  <text x="100" y="260" fill="#333" font-family="Arial" font-size="20">本次得分: 125</text>
+  <text x="100" y="295" fill="#FFD700" font-family="Arial" font-size="16">🏆 历史最高: 300</text>
+  <!-- 分享按钮 -->
+  <rect x="80" y="340" width="215" height="40" fill="#07C160" rx="5"/>
+  <text x="187" y="365" fill="white" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle">📤 分享战绩</text>
+  <!-- 提示 -->
+  <text x="187" y="410" fill="#999" font-family="Arial" font-size="12" text-anchor="middle">点击任意按钮重新开始</text>
+</svg>

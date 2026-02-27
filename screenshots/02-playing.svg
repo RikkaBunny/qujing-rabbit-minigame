@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 375 667">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#87CEEB"/>
+      <stop offset="50%" style="stop-color:#90EE90"/>
+      <stop offset="100%" style="stop-color:#228B22"/>
+    </linearGradient>
+  </defs>
+  <rect width="375" height="667" fill="url(#bg)"/>
+  <!-- 道路 -->
+  <rect x="115" y="100" width="120" height="200" fill="#8B4513" stroke="#32CD32" stroke-width="2"/>
+  <rect x="95" y="300" width="160" height="200" fill="#8B4513" stroke="#32CD32" stroke-width="2"/>
+  <rect x="115" y="500" width="120" height="200" fill="#8B4513" stroke="#32CD32" stroke-width="2"/>
+  <!-- 兔子 -->
+  <ellipse cx="175" cy="320" rx="15" ry="12" fill="white"/>
+  <circle cx="175" cy="308" r="10" fill="white"/>
+  <ellipse cx="169" cy="292" rx="4" ry="12" fill="white"/>
+  <ellipse cx="181" cy="292" rx="4" ry="12" fill="white"/>
+  <ellipse cx="169" cy="292" rx="2" ry="8" fill="#FFB6C1"/>
+  <ellipse cx="181" cy="292" rx="2" ry="8" fill="#FFB6C1"/>
+  <circle cx="171" cy="306" r="2" fill="#FF0000"/>
+  <circle cx="179" cy="306" r="2" fill="#FF0000"/>
+  <circle cx="175" cy="310" r="2" fill="#FF69B4"/>
+  <!-- UI -->
+  <rect x="10" y="10" width="150" height="60" fill="rgba(0,0,0,0.5)" rx="5"/>
+  <text x="20" y="35" fill="white" font-family="Arial" font-size="18">得分: 125</text>
+  <text x="20" y="55" fill="white" font-family="Arial" font-size="12">最高: 300</text>
+  <!-- 连击提示 -->
+  <text x="250" y="35" fill="#FFD700" font-family="Arial" font-size="14" font-weight="bold">x3 连击!</text>
+  <!-- 按钮 -->
+  <circle cx="40" cy="587" r="25" fill="rgba(255,255,255,0.5)"/>
+  <text x="40" y="593" fill="black" font-family="Arial" font-size="20" text-anchor="middle">←</text>
+  <circle cx="335" cy="587" r="25" fill="rgba(255,255,255,0.5)"/>
+  <text x="335" y="593" fill="black" font-family="Arial" font-size="20" text-anchor="middle">→</text>
+</svg>
