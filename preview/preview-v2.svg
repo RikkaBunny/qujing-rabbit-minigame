@@ -1,0 +1,137 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 375 667">
+  <!-- 背景渐变 -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#87CEEB"/>
+      <stop offset="50%" style="stop-color:#90EE90"/>
+      <stop offset="100%" style="stop-color:#228B22"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- 背景 -->
+  <rect width="375" height="667" fill="url(#bgGradient)"/>
+  
+  <!-- 雪花粒子 -->
+  <g fill="rgba(255,255,255,0.8)">
+    <circle cx="30" cy="50" r="2"/>
+    <circle cx="80" cy="120" r="3"/>
+    <circle cx="150" cy="30" r="2"/>
+    <circle cx="200" cy="80" r="2.5"/>
+    <circle cx="280" cy="45" r="2"/>
+    <circle cx="340" cy="100" r="3"/>
+    <circle cx="50" cy="200" r="2"/>
+    <circle cx="120" cy="150" r="2.5"/>
+    <circle cx="250" cy="180" r="2"/>
+    <circle cx="320" cy="220" r="3"/>
+    <circle cx="40" cy="300" r="2"/>
+    <circle cx="180" cy="250" r="2.5"/>
+    <circle cx="300" cy="280" r="2"/>
+    <circle cx="70" cy="380" r="3"/>
+    <circle cx="220" cy="350" r="2"/>
+    <circle cx="350" cy="400" r="2.5"/>
+    <circle cx="100" cy="450" r="2"/>
+    <circle cx="160" cy="500" r="3"/>
+    <circle cx="280" cy="480" r="2"/>
+    <circle cx="60" cy="550" r="2.5"/>
+    <circle cx="200" cy="580" r="2"/>
+    <circle cx="330" cy="620" r="3"/>
+    <circle cx="140" cy="650" r="2"/>
+    <circle cx="260" cy="640" r="2.5"/>
+  </g>
+  
+  <!-- 道路 -->
+  <g>
+    <!-- 道路格子 -->
+    <rect x="107" y="100" width="36" height="36" fill="#8B4513" stroke="#32CD32" stroke-width="2" rx="2"/>
+    <rect x="107" y="136" width="36" height="36" fill="#8B4513" stroke="#32CD32" stroke-width="2" rx="2"/>
+    <rect x="107" y="172" width="36" height="36" fill="#8B4513" stroke="#32CD32" stroke-width="2" rx="2"/>
+    <rect x="107" y="208" width="36" height="36" fill="#8B4513" stroke="#32CD32" stroke-width="2" rx="2"/>
+    <rect x="143" y="244" width="36" height="36" fill="#8B4513" stroke="#32CD32" stroke-width="2" rx="2"/>
+    <rect x="143" y="280" width="36" height="36" fill="#8B4513" stroke="#32CD32" stroke-width="2" rx="2"/>
+    <rect x="179" y="316" width="36" height="36" fill="#8B4513" stroke="#32CD32" stroke-width="2" rx="2"/>
+    <rect x="143" y="352" width="36" height="36" fill="#8B4513" stroke="#32CD32" stroke-width="2" rx="2"/>
+    <rect x="107" y="388" width="36" height="36" fill="#8B4513" stroke="#32CD32" stroke-width="2" rx="2"/>
+    <rect x="107" y="424" width="36" height="36" fill="#8B4513" stroke="#32CD32" stroke-width="2" rx="2"/>
+    <rect x="107" y="460" width="36" height="36" fill="#8B4513" stroke="#32CD32" stroke-width="2" rx="2"/>
+    <rect x="107" y="496" width="36" height="36" fill="#8B4513" stroke="#32CD32" stroke-width="2" rx="2"/>
+    <rect x="143" y="532" width="36" height="36" fill="#8B4513" stroke="#32CD32" stroke-width="2" rx="2"/>
+    <rect x="143" y="568" width="36" height="36" fill="#8B4513" stroke="#32CD32" stroke-width="2" rx="2"/>
+    <rect x="143" y="604" width="36" height="36" fill="#8B4513" stroke="#32CD32" stroke-width="2" rx="2"/>
+  </g>
+  
+  <!-- 小兔子 (v2动画增强版) -->
+  <g transform="translate(143, 400)">
+    <!-- 身体 -->
+    <ellipse cx="0" cy="0" rx="15" ry="12" fill="#FFFFFF"/>
+    <ellipse cx="0" cy="3" rx="12" ry="10" fill="#F0F0F0"/>
+    
+    <!-- 头部 -->
+    <circle cx="0" cy="-10" r="10" fill="#FFFFFF"/>
+    
+    <!-- 耳朵 -->
+    <ellipse cx="-8" cy="-28" rx="4" ry="12" fill="#FFFFFF"/>
+    <ellipse cx="8" cy="-28" rx="4" ry="12" fill="#FFFFFF"/>
+    <ellipse cx="-8" cy="-28" rx="2" ry="8" fill="#FFB6C1"/>
+    <ellipse cx="8" cy="-28" rx="2" ry="8" fill="#FFB6C1"/>
+    
+    <!-- 眼睛 -->
+    <circle cx="-5" cy="-11" r="2" fill="#FF0000"/>
+    <circle cx="5" cy="-11" r="2" fill="#FF0000"/>
+    
+    <!-- 腮红 -->
+    <ellipse cx="-12" cy="-6" rx="3" ry="2" fill="rgba(255,182,193,0.5)"/>
+    <ellipse cx="12" cy="-6" rx="3" ry="2" fill="rgba(255,182,193,0.5)"/>
+    
+    <!-- 鼻子 -->
+    <circle cx="0" cy="-6" r="2" fill="#FF69B4"/>
+  </g>
+  
+  <!-- UI: 分数 -->
+  <rect x="10" y="10" width="150" height="60" fill="rgba(0,0,0,0.5)" rx="5"/>
+  <text x="20" y="35" fill="#FFFFFF" font-family="Arial" font-size="20">得分: 25</text>
+  <text x="20" y="55" fill="#FFFFFF" font-family="Arial" font-size="14">最高: 100</text>
+  
+  <!-- UI: 连击提示 -->
+  <text x="170" y="35" fill="#FFD700" font-family="Arial" font-size="16" font-weight="bold">x2 连击!</text>
+  
+  <!-- UI: 控制按钮 -->
+  <circle cx="40" cy="587" r="25" fill="rgba(255,255,255,0.5)"/>
+  <text x="28" y="595" fill="#000000" font-family="Arial" font-size="24" font-weight="bold">←</text>
+  
+  <circle cx="335" cy="587" r="25" fill="rgba(255,255,255,0.5)"/>
+  <text x="323" y="595" fill="#000000" font-family="Arial" font-size="24" font-weight="bold">→</text>
+  
+  <!-- v2 标识 -->
+  <rect x="280" y="10" width="85" height="24" fill="#07C160" rx="12"/>
+  <text x="322" y="27" fill="#FFFFFF" font-family="Arial" font-size="12" font-weight="bold">v2 新版</text>
+  
+  <!-- 音效图标 -->
+  <g transform="translate(20, 620)">
+    <rect x="0" y="0" width="30" height="20" fill="rgba(0,0,0,0.3)" rx="3"/>
+    <text x="15" y="14" fill="#FFFFFF" font-family="Arial" font-size="10">🔊</text>
+  </g>
+  
+  <!-- 雪花图标 -->
+  <g transform="translate(60, 620)">
+    <rect x="0" y="0" width="30" height="20" fill="rgba(0,0,0,0.3)" rx="3"/>
+    <text x="15" y="14" fill="#FFFFFF" font-family="Arial" font-size="10">❄️</text>
+  </g>
+  
+  <!-- 分享图标 -->
+  <g transform="translate(280, 620)">
+    <rect x="0" y="0" width="30" height="20" fill="rgba(0,0,0,0.3)" rx="3"/>
+    <text x="15" y="14" fill="#FFFFFF" font-family="Arial" font-size="10">📤</text>
+  </g>
+  
+  <!-- 游戏结束面板（预览用半透明） -->
+  <rect x="30" y="150" width="315" height="280" fill="#FFFFFF" rx="10"/>
+  <text x="187" y="200" fill="#FF0000" font-family="Arial" font-size="32" font-weight="bold" text-anchor="middle">游戏结束</text>
+  <text x="100" y="260" fill="#333333" font-family="Arial" font-size="22">本次得分: 25</text>
+  <text x="100" y="295" fill="#FFD700" font-family="Arial" font-size="18">🏆 历史最高: 100</text>
+  
+  <!-- 分享按钮 -->
+  <rect x="80" y="340" width="215" height="40" fill="#07C160" rx="5"/>
+  <text x="187" y="366" fill="#FFFFFF" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle">📤 分享战绩</text>
+  
+  <text x="187" y="410" fill="#999999" font-family="Arial" font-size="14" text-anchor="middle">点击任意按钮重新开始</text>
+</svg>
